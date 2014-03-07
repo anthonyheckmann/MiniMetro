@@ -6,8 +6,8 @@ import java.util.UUID;
 import static java.lang.Integer.MAX_VALUE;
 
 public class Terminal {
-    private enum Type {
-        SQUARE, CIRCLE, HOUSE, PLUS, TRIANGLE;
+    public enum Type {
+        SQUARE, CIRCLE, HOUSE, PLUS, TRIANGLE, FAN, HEXAGON;
 
         static Type randomTerminal() {
             int index = random.nextInt(MAX_VALUE);

@@ -10,7 +10,7 @@ public class Terminal {
         SQUARE, CIRCLE, HOUSE, PLUS, TRIANGLE;
 
         static Type randomTerminal() {
-            int index = random.nextInt();
+            int index = random.nextInt(MAX_VALUE);
             int size = values().length;
 
             return values()[index % size];
@@ -18,14 +18,13 @@ public class Terminal {
     }
 
     static {
-        random = new Random(MAX_VALUE);
+        random = new Random();
     }
 
     private final Type type;
     private final UUID uuid;
 
     private static final Random random;
-
 
     public Terminal() {
         this(Type.randomTerminal());

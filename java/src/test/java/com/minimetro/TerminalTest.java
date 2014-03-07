@@ -18,5 +18,4 @@ public class TerminalTest extends TestCase {
     public void testTerminalHasUuid() {
         Assert.assertNotNull(terminal.getUuid());
     }
-
 }

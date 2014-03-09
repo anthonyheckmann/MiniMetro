@@ -7,7 +7,7 @@ import static java.lang.Integer.MAX_VALUE;
 
 public class Terminal {
     public enum Type {
-        SQUARE, CIRCLE, HOUSE, PLUS, TRIANGLE, FAN, HEXAGON;
+        SQUARE, CIRCLE, HOUSE, PLUS, TRIANGLE, FAN, HEXAGON, STAR;
 
         static Type randomTerminal() {
             int index = random.nextInt(MAX_VALUE);

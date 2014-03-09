@@ -1,32 +1,31 @@
 package com.minimetro;
 
 public class Line {
-    private final Terminal fromTerminal;
-    private final Terminal toTerminal;
-
-    public Line(Terminal fromTerminal, Terminal toTerminal) {
-        if(fromTerminal.equals(toTerminal)) {
-            throw new IllegalArgumentException("The from terminal, " + fromTerminal.toString() +
-                    ", cannot be the same as the to terminal, " + toTerminal.toString() + ".");
-        }
-
-        this.fromTerminal = fromTerminal;
-        this.toTerminal = toTerminal;
+    public enum Color {
+        RED, GREEN, YELLOW, BLUE, ORANGE, PURPLE;
     }
 
-    public Terminal getFromTerminal() {
-        return fromTerminal;
+    private final Color color;
+    private final Route route;
+
+    public Line(Color color, Route route) {
+        this.color = color;
+        this.route = route;
     }
 
-    public Terminal getToTerminal() {
-        return toTerminal;
+    public Color getColor() {
+        return color;
+    }
+
+    public Route getRoute() {
+        return route;
     }
 
     @Override
     public String toString() {
         return "Line{" +
-            "fromTerminal=" + fromTerminal +
-            ", toTerminal=" + toTerminal +
+            "color=" + color +
+            ", route=" + route +
             '}';
     }
 
@@ -37,18 +36,16 @@ public class Line {
 
         Line line = (Line) o;
 
-        if (fromTerminal != null ? !fromTerminal.equals(line.fromTerminal) : line.fromTerminal != null)
-            return false;
-        if (toTerminal != null ? !toTerminal.equals(line.toTerminal) : line.toTerminal != null)
-            return false;
+        if (color != line.color) return false;
+        if (route != null ? !route.equals(line.route) : line.route != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = fromTerminal != null ? fromTerminal.hashCode() : 0;
-        result = 31 * result + (toTerminal != null ? toTerminal.hashCode() : 0);
+        int result = color != null ? color.hashCode() : 0;
+        result = 31 * result + (route != null ? route.hashCode() : 0);
         return result;
     }
 }

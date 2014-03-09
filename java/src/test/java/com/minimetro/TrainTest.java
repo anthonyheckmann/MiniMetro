@@ -4,12 +4,15 @@ import junit.framework.TestCase;
 
 import org.junit.Assert;
 
+import com.minimetro.Train.Speed;
+
 import static com.minimetro.Line.Color.RED;
 import static com.minimetro.Terminal.Type.CIRCLE;
 import static com.minimetro.Terminal.Type.SQUARE;
 import static com.minimetro.Terminal.Type.TRIANGLE;
+import static com.minimetro.Train.Speed.FAST;
 
-public class LineTest extends TestCase {
+public class TrainTest extends TestCase {
     private Route route;
 
     private Terminal terminal1;
@@ -20,6 +23,8 @@ public class LineTest extends TestCase {
     private Segment segment2;
 
     private Line line;
+
+    private Train train;
 
     public void setUp() throws Exception {
         route = new Route();
@@ -35,20 +40,35 @@ public class LineTest extends TestCase {
         route.addSegment(segment2);
 
         line = new Line(RED, route);
+
+        train = new Train(line);
     }
 
-    public void testLineHasAColor() {
-        Assert.assertNotNull(line.getColor());
+    public void testTrainHasACapacity() {
+        Assert.assertEquals(8, train.getCapacity());
     }
 
-    public void testLineHasARoute() {
-        Assert.assertNotNull(line.getRoute());
+    public void testTrainHasASpeed() {
+        Assert.assertNotNull(train.getSpeed());
     }
 
-    public void testLineAddedAnExtraSegmentToRoute() {
-        Segment newSegment = new Segment(terminal1, terminal3);
+    public void testTrainHasALine() {
+        Assert.assertNotNull(train.getLine());
+    }
 
-        route.addSegment(newSegment);
-        Assert.assertEquals(3, line.getRoute().size());
+    public void testAdjustingTrainCapacity() {
+        int newCapacity = 10;
+
+        train.setCapacity(newCapacity);
+        Assert.assertEquals(newCapacity, train.getCapacity());
+        Assert.assertEquals(10, train.getCapacity());
+    }
+
+    public void testAdjustingTrainSpeed() {
+        Speed newSpeed = FAST;
+
+        train.setSpeed(newSpeed);
+        Assert.assertEquals(newSpeed, train.getSpeed());
+        Assert.assertEquals(FAST, train.getSpeed());
     }
 }

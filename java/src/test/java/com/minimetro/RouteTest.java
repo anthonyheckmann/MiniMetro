@@ -4,12 +4,11 @@ import junit.framework.TestCase;
 
 import org.junit.Assert;
 
-import static com.minimetro.Line.Color.RED;
 import static com.minimetro.Terminal.Type.CIRCLE;
 import static com.minimetro.Terminal.Type.SQUARE;
 import static com.minimetro.Terminal.Type.TRIANGLE;
 
-public class LineTest extends TestCase {
+public class RouteTest extends TestCase {
     private Route route;
 
     private Terminal terminal1;
@@ -18,8 +17,6 @@ public class LineTest extends TestCase {
 
     private Segment segment1;
     private Segment segment2;
-
-    private Line line;
 
     public void setUp() throws Exception {
         route = new Route();
@@ -30,25 +27,36 @@ public class LineTest extends TestCase {
 
         segment1 = new Segment(terminal1, terminal2);
         segment2 = new Segment(terminal2, terminal3);
+    }
 
+    public void testRouteHasAListOfSegments() {
         route.addSegment(segment1);
         route.addSegment(segment2);
 
-        line = new Line(RED, route);
+        Assert.assertNotNull(route.getSegments());
+        Assert.assertTrue(!route.isEmpty());
+        Assert.assertEquals(2, route.size());
     }
 
-    public void testLineHasAColor() {
-        Assert.assertNotNull(line.getColor());
+    public void testSegmentNotAlreadyExistInRoute() {
+        Throwable thrown = null;
+
+        try {
+            route.addSegment(segment1);
+            route.addSegment(segment2);
+            route.addSegment(segment1);
+        } catch(Throwable e) {
+            thrown = e;
+        }
+
+        Assert.assertNotNull(thrown);
+        Assert.assertTrue(thrown instanceof IllegalArgumentException);
     }
 
-    public void testLineHasARoute() {
-        Assert.assertNotNull(line.getRoute());
-    }
-
-    public void testLineAddedAnExtraSegmentToRoute() {
+    public void testLineRemovedFromRoute() {
         Segment newSegment = new Segment(terminal1, terminal3);
 
         route.addSegment(newSegment);
-        Assert.assertEquals(3, line.getRoute().size());
+        Assert.assertTrue(route.removeSegment(newSegment));
     }
 }

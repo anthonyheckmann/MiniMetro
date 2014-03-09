@@ -10,6 +10,7 @@ import static com.minimetro.Terminal.Type.HEXAGON;
 import static com.minimetro.Terminal.Type.HOUSE;
 import static com.minimetro.Terminal.Type.PLUS;
 import static com.minimetro.Terminal.Type.SQUARE;
+import static com.minimetro.Terminal.Type.STAR;
 import static com.minimetro.Terminal.Type.TRIANGLE;
 
 public class TerminalTest extends TestCase {
@@ -62,6 +63,11 @@ public class TerminalTest extends TestCase {
         Assert.assertEquals(hexagonTerminal.getType(), HEXAGON);
     }
 
+    public void testTerminalIsAStar() {
+        Terminal starTerminal = new Terminal(STAR);
+        Assert.assertEquals(starTerminal.getType(), STAR);
+    }
+
     public void testANewTerminalIsUnique() {
         Terminal newTerminal = new Terminal();
         Assert.assertNotEquals(terminal, newTerminal);
@@ -95,5 +101,9 @@ public class TerminalTest extends TestCase {
         Terminal hexagonTerminal1 = new Terminal(HEXAGON);
         Terminal hexagonTerminal2 = new Terminal(HEXAGON);
         Assert.assertNotEquals(hexagonTerminal1, hexagonTerminal2);
+
+        Terminal starTerminal1 = new Terminal(STAR);
+        Terminal starTerminal2 = new Terminal(STAR);
+        Assert.assertNotEquals(starTerminal1, starTerminal2);
     }
 }

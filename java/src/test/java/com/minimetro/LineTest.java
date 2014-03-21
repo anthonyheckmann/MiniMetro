@@ -35,6 +35,8 @@ public class LineTest extends TestCase {
         route.addSegment(segment2);
 
         line = new Line(RED, route);
+
+        System.out.println(line);
     }
 
     public void testLineHasAColor() {

@@ -28,6 +28,10 @@ public class TerminalTest extends TestCase {
         Assert.assertNotNull(terminal.getUuid());
     }
 
+    public void testTerminalHasUpgrades() {
+        Assert.assertNotNull(terminal.getUpgrades());
+    }
+
     public void testTerminalIsASquare() {
         Terminal squareTerminal = new Terminal(SQUARE);
         Assert.assertEquals(squareTerminal.getType(), SQUARE);

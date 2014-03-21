@@ -35,6 +35,8 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:+'
+    compile 'com.google.guava:guava:14.0.1'
 
+    compile project(':java')
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }

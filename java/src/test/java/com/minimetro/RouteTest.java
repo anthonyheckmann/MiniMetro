@@ -27,23 +27,20 @@ public class RouteTest extends TestCase {
 
         segment1 = new Segment(terminal1, terminal2);
         segment2 = new Segment(terminal2, terminal3);
+
+        route.addSegment(segment1);
+        route.addSegment(segment2);
     }
 
     public void testRouteHasAListOfSegments() {
-        route.addSegment(segment1);
-        route.addSegment(segment2);
-
         Assert.assertNotNull(route.getSegments());
         Assert.assertTrue(!route.isEmpty());
-        Assert.assertEquals(2, route.size());
     }
 
     public void testSegmentNotAlreadyExistInRoute() {
         Throwable thrown = null;
 
         try {
-            route.addSegment(segment1);
-            route.addSegment(segment2);
             route.addSegment(segment1);
         } catch(Throwable e) {
             thrown = e;
